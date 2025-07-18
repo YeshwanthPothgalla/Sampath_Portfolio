@@ -5,22 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Cinematic drone visuals that drive brand engagement — created by Sampath, MBA in Digital Marketing."
+      content="Professional drone cinematography and aerial videography services by Sampath - Creating stunning visuals that drive engagement."
     />
     <meta
       property="og:title"
-      content="Sampath | Drone Videographer & Marketing Strategist"
+      content="Sampath | Professional Drone Cinematographer"
     />
     <meta
       property="og:description"
-      content="Cinematic visuals crafted to drive brand engagement."
+      content="Award-winning aerial cinematography with marketing expertise."
     />
-    <meta name="twitter:card" content="summary_large_image" />
-    <title>Sampath | Drone Storytelling with Marketing Insight</title>
+    <title>Sampath | Professional Drone Cinematographer</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -28,399 +27,709 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <style>
-      body {
-        font-family: "Space Grotesk", sans-serif;
-        background-color: #0a0a0a;
-        color: white;
-        overflow-x: hidden;
+      :root {
+        --primary-color: #1a1a1a;
+        --accent-color: #ff6b35;
+        --text-light: #f8f9fa;
+        --text-dark: #2d3748;
+        --glass-bg: rgba(255, 255, 255, 0.1);
       }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--primary-color);
+        color: var(--text-light);
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      .font-display {
+        font-family: "Playfair Display", serif;
+      }
+
       html {
         scroll-behavior: smooth;
       }
-      
-      .video-overlay {
-        background: linear-gradient(45deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4));
+
+      /* Navigation Styles */
+      .nav-glass {
+        background: rgba(26, 26, 26, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
-      
-      .floating-animation {
-        animation: float 6s ease-in-out infinite;
-      }
-      
-      @keyframes float {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-20px); }
-      }
-      
-      .fade-in-up {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.8s ease-out;
-      }
-      
-      .fade-in-up.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      
-      .parallax-bg {
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-      
-      .glass-effect {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-      }
-      
-      .hover-scale {
-        transition: transform 0.3s ease;
-      }
-      
-      .hover-scale:hover {
-        transform: scale(1.05);
-      }
-      
-      .gradient-text {
-        background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-      
-      .video-container {
+
+      /* Hero Video Styles */
+      .hero-video-container {
         position: relative;
+        height: 100vh;
         overflow: hidden;
-        border-radius: 12px;
       }
-      
-      .video-container::before {
-        content: '';
+
+      .hero-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+      }
+
+      .hero-overlay {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(45deg, rgba(255,107,107,0.1), rgba(78,205,196,0.1));
-        z-index: 1;
-        opacity: 0;
-        transition: opacity 0.3s ease;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 0, 0, 0.4) 0%,
+          rgba(0, 0, 0, 0.6) 100%
+        );
+        z-index: 2;
       }
-      
-      .video-container:hover::before {
-        opacity: 1;
+
+      /* Portfolio Grid Styles */
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
       }
-      
-      .nav-blur {
-        backdrop-filter: blur(20px);
-        background: rgba(0, 0, 0, 0.8);
+
+      .portfolio-item {
+        position: relative;
+        aspect-ratio: 16/9;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #000;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       }
-      
-      .section-bg-video {
-        position: absolute;
-        top: 0;
-        left: 0;
+
+      .portfolio-item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      }
+
+      .portfolio-video {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        z-index: -1;
+        transition: transform 0.4s ease;
+      }
+
+      .portfolio-item:hover .portfolio-video {
+        transform: scale(1.05);
+      }
+
+      .portfolio-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.8) 0%,
+          transparent 50%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        display: flex;
+        align-items: flex-end;
+        padding: 2rem;
+      }
+
+      .portfolio-item:hover .portfolio-overlay {
+        opacity: 1;
+      }
+
+      /* Glass Effect */
+      .glass {
+        background: var(--glass-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      /* Animations */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .slide-in-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: all 0.8s ease-out;
+      }
+
+      .slide-in-left.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .slide-in-right {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: all 0.8s ease-out;
+      }
+
+      .slide-in-right.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* Button Styles */
+      .btn-primary {
+        background: linear-gradient(135deg, var(--accent-color), #ff8f65);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--text-light);
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.5);
+      }
+
+      /* Service Cards */
+      .service-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 2rem;
+        transition: all 0.3s ease;
+      }
+
+      .service-card:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-5px);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .portfolio-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+          padding: 0 1rem;
+        }
+
+        .portfolio-item {
+          min-height: 250px;
+        }
+
+        .hero-video-container {
+          height: 70vh;
+        }
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--primary-color);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--accent-color);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #ff8f65;
+      }
+
+      /* Loading States */
+      .loading {
+        position: relative;
+      }
+
+      .loading::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 40px;
+        height: 40px;
+        margin: -20px 0 0 -20px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-top: 3px solid var(--accent-color);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
       }
     </style>
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 nav-blur transition-all duration-300" id="navbar">
+    <nav class="fixed top-0 w-full z-50 nav-glass transition-all duration-300" id="navbar">
       <div class="container mx-auto px-6 py-4">
         <div class="flex justify-between items-center">
-          <div class="text-xl font-bold gradient-text">Sampath Films</div>
-          <div class="hidden md:flex space-x-8">
-            <a href="#home" class="hover:text-blue-400 transition">Home</a>
-            <a href="#portfolio" class="hover:text-blue-400 transition">Portfolio</a>
-            <a href="#about" class="hover:text-blue-400 transition">About</a>
-            <a href="#services" class="hover:text-blue-400 transition">Services</a>
-            <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
+          <div class="text-2xl font-display font-bold">
+            <span class="text-white">Sampath</span>
+            <span class="text-orange-500">Films</span>
           </div>
-          <button class="md:hidden" id="mobile-menu-btn">
+          <div class="hidden md:flex space-x-8">
+            <a href="#home" class="hover:text-orange-500 transition-colors">Home</a>
+            <a href="#portfolio" class="hover:text-orange-500 transition-colors">Portfolio</a>
+            <a href="#about" class="hover:text-orange-500 transition-colors">About</a>
+            <a href="#services" class="hover:text-orange-500 transition-colors">Services</a>
+            <a href="#contact" class="hover:text-orange-500 transition-colors">Contact</a>
+          </div>
+          <button class="md:hidden text-white" id="mobile-menu-btn">
             <i class="fas fa-bars text-xl"></i>
           </button>
         </div>
       </div>
     </nav>
 
-    <!-- Hero Section with Video Background -->
-    <section id="home" class="relative h-screen w-full overflow-hidden">
+    <!-- Hero Section -->
+    <section id="home" class="hero-video-container">
       <video
         autoplay
         muted
         loop
         playsinline
-        class="absolute inset-0 object-cover w-full h-full"
-        id="hero-video"
+        class="hero-video"
+        poster="https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
       >
         <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9e7c02d&profile_id=139&oauth2_token_id=57447761" type="video/mp4" />
-        <source src="videos/hero-drone.mp4" type="video/mp4" />
       </video>
-      <div class="relative z-10 flex flex-col items-center justify-center h-full video-overlay text-center px-4">
-        <div class="floating-animation">
-          <h1 class="text-5xl md:text-7xl font-bold mb-6 fade-in-up">
-            <span class="gradient-text">Drone Storytelling</span><br>
-            with Marketing Insight
+      <div class="hero-overlay"></div>
+      <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
+        <div class="max-w-4xl mx-auto">
+          <h1 class="text-5xl md:text-7xl font-display font-bold mb-6 fade-in">
+            Professional Drone
+            <span class="text-orange-500">Cinematography</span>
           </h1>
-          <p class="text-xl md:text-3xl mb-8 fade-in-up font-light">
-            Cinematic visuals crafted to drive brand engagement
+          <p class="text-xl md:text-2xl mb-8 fade-in font-light max-w-2xl mx-auto">
+            Creating stunning aerial visuals that tell your story from a perspective that captivates and inspires.
           </p>
-          <div class="flex flex-col sm:flex-row gap-4 fade-in-up">
-            <a
-              href="#portfolio"
-              class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
-            >
-              <i class="fas fa-play mr-2"></i>Explore My Work
+          <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+            <a href="#portfolio" class="btn-primary">
+              <i class="fas fa-play"></i>
+              View Portfolio
             </a>
-            <a
-              href="#contact"
-              class="glass-effect text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-black transition-all duration-300"
-            >
-              <i class="fas fa-envelope mr-2"></i>Get In Touch
+            <a href="#contact" class="btn-secondary">
+              <i class="fas fa-envelope"></i>
+              Get Quote
             </a>
           </div>
         </div>
       </div>
       
       <!-- Scroll Indicator -->
-      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
         <i class="fas fa-chevron-down text-2xl text-white opacity-70"></i>
       </div>
     </section>
 
-    <!-- Portfolio Section with Video Backgrounds -->
-    <section id="portfolio" class="relative py-20 px-6 overflow-hidden">
-      <video
-        autoplay
-        muted
-        loop
-        playsinline
-        class="section-bg-video opacity-20"
-      >
-        <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9e7c02d&profile_id=139&oauth2_token_id=57447761" type="video/mp4" />
-      </video>
-      
-      <div class="relative z-10">
-        <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 fade-in-up gradient-text">Portfolio</h2>
-        <p class="text-center text-gray-300 mb-16 fade-in-up">Showcasing cinematic excellence across various industries</p>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 px-6 bg-gray-900">
+      <div class="container mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 fade-in">
+            Featured <span class="text-orange-500">Work</span>
+          </h2>
+          <p class="text-xl text-gray-300 max-w-2xl mx-auto fade-in">
+            Explore a collection of aerial cinematography projects showcasing diverse industries and creative visions.
+          </p>
+        </div>
         
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
-          <div class="fade-in-up video-container hover-scale">
-            <h3 class="text-2xl font-semibold mb-4 flex items-center">
-              <i class="fas fa-building mr-3 text-blue-400"></i>Brand Films
-            </h3>
-            <div class="relative">
-              <iframe
-                class="w-full aspect-video rounded-lg shadow-2xl"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                allowfullscreen
-              ></iframe>
+        <div class="portfolio-grid">
+          <!-- Corporate Video -->
+          <div class="portfolio-item fade-in">
+            <video
+              class="portfolio-video"
+              muted
+              loop
+              poster="https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=800&h=450&fit=crop"
+            >
+              <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9e7c02d&profile_id=139&oauth2_token_id=57447761" type="video/mp4" />
+            </video>
+            <div class="portfolio-overlay">
+              <div>
+                <h3 class="text-2xl font-semibold mb-2">Corporate Showcase</h3>
+                <p class="text-gray-300">Dynamic aerial perspectives for brand storytelling</p>
+              </div>
             </div>
-            <p class="mt-4 text-gray-300">Corporate storytelling that connects with audiences and drives engagement.</p>
           </div>
-          
-          <div class="fade-in-up video-container hover-scale">
-            <h3 class="text-2xl font-semibold mb-4 flex items-center">
-              <i class="fas fa-home mr-3 text-green-400"></i>Real Estate
-            </h3>
-            <div class="relative">
-              <iframe
-                class="w-full aspect-video rounded-lg shadow-2xl"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                allowfullscreen
-              ></iframe>
+
+          <!-- Real Estate -->
+          <div class="portfolio-item fade-in">
+            <video
+              class="portfolio-video"
+              muted
+              loop
+              poster="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800&h=450&fit=crop"
+            >
+              <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9e7c02d&profile_id=139&oauth2_token_id=57447761" type="video/mp4" />
+            </video>
+            <div class="portfolio-overlay">
+              <div>
+                <h3 class="text-2xl font-semibold mb-2">Luxury Real Estate</h3>
+                <p class="text-gray-300">Showcasing properties from breathtaking angles</p>
+              </div>
             </div>
-            <p class="mt-4 text-gray-300">Aerial perspectives that showcase properties in their best light.</p>
           </div>
-          
-          <div class="fade-in-up video-container hover-scale">
-            <h3 class="text-2xl font-semibold mb-4 flex items-center">
-              <i class="fas fa-plane mr-3 text-purple-400"></i>Travel & Events
-            </h3>
-            <div class="relative">
-              <iframe
-                class="w-full aspect-video rounded-lg shadow-2xl"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                allowfullscreen
-              ></iframe>
+
+          <!-- Event Coverage -->
+          <div class="portfolio-item fade-in">
+            <video
+              class="portfolio-video"
+              muted
+              loop
+              poster="https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=800&h=450&fit=crop"
+            >
+              <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9e7c02d&profile_id=139&oauth2_token_id=57447761" type="video/mp4" />
+            </video>
+            <div class="portfolio-overlay">
+              <div>
+                <h3 class="text-2xl font-semibold mb-2">Event Documentation</h3>
+                <p class="text-gray-300">Capturing memorable moments from above</p>
+              </div>
             </div>
-            <p class="mt-4 text-gray-300">Capturing unforgettable moments from unique aerial perspectives.</p>
           </div>
-          
-          <div class="fade-in-up video-container hover-scale">
-            <h3 class="text-2xl font-semibold mb-4 flex items-center">
-              <i class="fas fa-mobile-alt mr-3 text-red-400"></i>Social Media Shorts
-            </h3>
-            <div class="relative">
-              <iframe
-                class="w-full aspect-video rounded-lg shadow-2xl"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                allowfullscreen
-              ></iframe>
+
+          <!-- Landscape/Travel -->
+          <div class="portfolio-item fade-in">
+            <video
+              class="portfolio-video"
+              muted
+              loop
+              poster="https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=800&h=450&fit=crop"
+            >
+              <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9e7c02d&profile_id=139&oauth2_token_id=57447761" type="video/mp4" />
+            </video>
+            <div class="portfolio-overlay">
+              <div>
+                <h3 class="text-2xl font-semibold mb-2">Cinematic Landscapes</h3>
+                <p class="text-gray-300">Nature's beauty captured in motion</p>
+              </div>
             </div>
-            <p class="mt-4 text-gray-300">Viral-ready content optimized for social media platforms.</p>
           </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <a href="#contact" class="btn-primary">
+            <i class="fas fa-arrow-right"></i>
+            Start Your Project
+          </a>
         </div>
       </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="relative bg-gradient-to-br from-gray-900 to-black py-20 px-6">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-4xl md:text-5xl font-bold mb-8 fade-in-up gradient-text">About Me</h2>
-        <div class="glass-effect rounded-2xl p-8 md:p-12 fade-in-up">
-          <div class="w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
-            <i class="fas fa-user text-4xl text-white"></i>
+    <section id="about" class="py-20 px-6 bg-black">
+      <div class="container mx-auto max-w-6xl">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="slide-in-left">
+            <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">
+              About <span class="text-orange-500">Sampath</span>
+            </h2>
+            <p class="text-lg text-gray-300 mb-6 leading-relaxed">
+              With an MBA in Digital Marketing and years of experience in aerial cinematography, 
+              I bring a unique perspective that combines creative vision with strategic marketing insight.
+            </p>
+            <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+              My passion lies in creating visually stunning content that not only captivates audiences 
+              but also drives meaningful engagement and delivers measurable results for brands and businesses.
+            </p>
+            <div class="grid grid-cols-2 gap-6 mb-8">
+              <div>
+                <div class="text-3xl font-bold text-orange-500 mb-2">50+</div>
+                <p class="text-gray-400">Projects Completed</p>
+              </div>
+              <div>
+                <div class="text-3xl font-bold text-orange-500 mb-2">5+</div>
+                <p class="text-gray-400">Years Experience</p>
+              </div>
+            </div>
+            <a href="#contact" class="btn-primary">
+              <i class="fas fa-handshake"></i>
+              Let's Collaborate
+            </a>
           </div>
-          <p class="text-lg md:text-xl leading-relaxed mb-6">
-            I'm <span class="gradient-text font-semibold">Sampath</span> — a drone videographer with an MBA in Digital Marketing. 
-            I blend aerial cinematography with marketing strategy to create visuals that don't just look good, but perform.
-          </p>
-          <p class="text-gray-300 mb-8">
-            With years of experience in both creative production and digital marketing, I understand what it takes 
-            to create content that resonates with audiences and drives real business results.
-          </p>
-          <div class="flex flex-wrap justify-center gap-4">
-            <span class="glass-effect px-4 py-2 rounded-full text-sm">Drone Cinematography</span>
-            <span class="glass-effect px-4 py-2 rounded-full text-sm">Digital Marketing</span>
-            <span class="glass-effect px-4 py-2 rounded-full text-sm">Brand Storytelling</span>
-            <span class="glass-effect px-4 py-2 rounded-full text-sm">Content Strategy</span>
+          <div class="slide-in-right">
+            <div class="glass rounded-2xl p-8">
+              <img
+                src="https://images.pexels.com/photos/1367269/pexels-photo-1367269.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop"
+                alt="Sampath with drone equipment"
+                class="w-full rounded-lg mb-6"
+              />
+              <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                  <i class="fas fa-certificate text-orange-500"></i>
+                  <span>FAA Part 107 Certified</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i class="fas fa-graduation-cap text-orange-500"></i>
+                  <span>MBA in Digital Marketing</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i class="fas fa-award text-orange-500"></i>
+                  <span>Award-Winning Cinematographer</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i class="fas fa-shield-alt text-orange-500"></i>
+                  <span>Fully Insured Operations</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="relative py-20 px-6">
-      <video
-        autoplay
-        muted
-        loop
-        playsinline
-        class="section-bg-video opacity-10"
-      >
-        <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9e7c02d&profile_id=139&oauth2_token_id=57447761" type="video/mp4" />
-      </video>
-      
-      <div class="relative z-10 max-w-6xl mx-auto">
-        <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in-up gradient-text">Services</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div class="glass-effect p-8 rounded-2xl text-center hover-scale fade-in-up">
-            <i class="fas fa-video text-4xl text-blue-400 mb-4"></i>
-            <h3 class="text-xl font-semibold mb-3">Aerial Videography</h3>
-            <p class="text-gray-300 text-sm">Professional drone cinematography for all your visual needs</p>
-          </div>
-          <div class="glass-effect p-8 rounded-2xl text-center hover-scale fade-in-up">
-            <i class="fas fa-share-alt text-4xl text-green-400 mb-4"></i>
-            <h3 class="text-xl font-semibold mb-3">Social Media Campaigns</h3>
-            <p class="text-gray-300 text-sm">Viral-ready content that drives engagement and growth</p>
-          </div>
-          <div class="glass-effect p-8 rounded-2xl text-center hover-scale fade-in-up">
-            <i class="fas fa-bullhorn text-4xl text-purple-400 mb-4"></i>
-            <h3 class="text-xl font-semibold mb-3">Brand Storytelling</h3>
-            <p class="text-gray-300 text-sm">Compelling narratives that connect with your audience</p>
-          </div>
-          <div class="glass-effect p-8 rounded-2xl text-center hover-scale fade-in-up">
-            <i class="fas fa-chart-line text-4xl text-red-400 mb-4"></i>
-            <h3 class="text-xl font-semibold mb-3">Real Estate Marketing</h3>
-            <p class="text-gray-300 text-sm">Showcase properties with stunning aerial perspectives</p>
-          </div>
+    <section id="services" class="py-20 px-6 bg-gray-900">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 fade-in">
+            Professional <span class="text-orange-500">Services</span>
+          </h2>
+          <p class="text-xl text-gray-300 max-w-2xl mx-auto fade-in">
+            Comprehensive aerial cinematography solutions tailored to your specific needs and vision.
+          </p>
         </div>
-      </div>
-    </section>
-
-    <!-- Results Section -->
-    <section class="bg-gradient-to-r from-blue-900 to-purple-900 py-20 px-6">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-4xl md:text-5xl font-bold mb-12 fade-in-up">Results That Matter</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="glass-effect p-8 rounded-2xl fade-in-up">
-            <div class="text-4xl font-bold text-blue-400 mb-2">200K+</div>
-            <p class="text-xl">Views on branded video campaign</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="service-card fade-in">
+            <div class="text-4xl text-orange-500 mb-4">
+              <i class="fas fa-video"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Aerial Cinematography</h3>
+            <p class="text-gray-300 mb-4">
+              Professional drone videography for commercials, documentaries, and brand content.
+            </p>
+            <ul class="text-sm text-gray-400 space-y-1">
+              <li>• 4K/8K video recording</li>
+              <li>• Cinematic color grading</li>
+              <li>• Professional editing</li>
+            </ul>
           </div>
-          <div class="glass-effect p-8 rounded-2xl fade-in-up">
-            <div class="text-4xl font-bold text-green-400 mb-2">45%</div>
-            <p class="text-xl">Increase in client engagement</p>
+
+          <div class="service-card fade-in">
+            <div class="text-4xl text-orange-500 mb-4">
+              <i class="fas fa-home"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Real Estate Media</h3>
+            <p class="text-gray-300 mb-4">
+              Showcase properties with stunning aerial perspectives that sell.
+            </p>
+            <ul class="text-sm text-gray-400 space-y-1">
+              <li>• Property overviews</li>
+              <li>• Neighborhood showcases</li>
+              <li>• Virtual tours</li>
+            </ul>
+          </div>
+
+          <div class="service-card fade-in">
+            <div class="text-4xl text-orange-500 mb-4">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Event Coverage</h3>
+            <p class="text-gray-300 mb-4">
+              Capture special moments from unique aerial perspectives.
+            </p>
+            <ul class="text-sm text-gray-400 space-y-1">
+              <li>• Weddings & celebrations</li>
+              <li>• Corporate events</li>
+              <li>• Festivals & concerts</li>
+            </ul>
+          </div>
+
+          <div class="service-card fade-in">
+            <div class="text-4xl text-orange-500 mb-4">
+              <i class="fas fa-building"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Commercial Projects</h3>
+            <p class="text-gray-300 mb-4">
+              Strategic aerial content for marketing and promotional campaigns.
+            </p>
+            <ul class="text-sm text-gray-400 space-y-1">
+              <li>• Brand storytelling</li>
+              <li>• Product launches</li>
+              <li>• Corporate profiles</li>
+            </ul>
+          </div>
+
+          <div class="service-card fade-in">
+            <div class="text-4xl text-orange-500 mb-4">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Social Media Content</h3>
+            <p class="text-gray-300 mb-4">
+              Viral-ready content optimized for social platforms.
+            </p>
+            <ul class="text-sm text-gray-400 space-y-1">
+              <li>• Instagram & TikTok videos</li>
+              <li>• YouTube content</li>
+              <li>• Platform optimization</li>
+            </ul>
+          </div>
+
+          <div class="service-card fade-in">
+            <div class="text-4xl text-orange-500 mb-4">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Marketing Strategy</h3>
+            <p class="text-gray-300 mb-4">
+              Combine aerial content with strategic marketing insights.
+            </p>
+            <ul class="text-sm text-gray-400 space-y-1">
+              <li>• Content strategy</li>
+              <li>• Campaign planning</li>
+              <li>• Performance analytics</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="relative py-20 px-6">
-      <div class="max-w-4xl mx-auto">
-        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 fade-in-up gradient-text">Let's Create Together</h2>
+    <section id="contact" class="py-20 px-6 bg-black">
+      <div class="container mx-auto max-w-4xl">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 fade-in">
+            Let's Create Something <span class="text-orange-500">Amazing</span>
+          </h2>
+          <p class="text-xl text-gray-300 fade-in">
+            Ready to elevate your project with professional aerial cinematography?
+          </p>
+        </div>
+        
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div class="fade-in-up">
+          <div class="fade-in">
             <h3 class="text-2xl font-semibold mb-6">Get In Touch</h3>
-            <div class="space-y-4 mb-8">
-              <div class="flex items-center">
-                <i class="fas fa-envelope text-blue-400 mr-4"></i>
-                <span>sampath@dronefilms.com</span>
+            <div class="space-y-6 mb-8">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
+                  <i class="fas fa-envelope text-white"></i>
+                </div>
+                <div>
+                  <p class="font-semibold">Email</p>
+                  <p class="text-gray-300">hello@sampathfilms.com</p>
+                </div>
               </div>
-              <div class="flex items-center">
-                <i class="fas fa-phone text-green-400 mr-4"></i>
-                <span>+1 (555) 123-4567</span>
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
+                  <i class="fas fa-phone text-white"></i>
+                </div>
+                <div>
+                  <p class="font-semibold">Phone</p>
+                  <p class="text-gray-300">+1 (555) 123-4567</p>
+                </div>
               </div>
-              <div class="flex items-center">
-                <i class="fas fa-map-marker-alt text-red-400 mr-4"></i>
-                <span>Los Angeles, CA</span>
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
+                  <i class="fas fa-map-marker-alt text-white"></i>
+                </div>
+                <div>
+                  <p class="font-semibold">Location</p>
+                  <p class="text-gray-300">Los Angeles, CA</p>
+                </div>
               </div>
             </div>
-            <div class="flex space-x-6">
-              <a href="#" class="text-2xl hover:text-blue-400 transition">
-                <i class="fab fa-linkedin"></i>
-              </a>
-              <a href="#" class="text-2xl hover:text-pink-400 transition">
+            <div class="flex gap-4">
+              <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors">
                 <i class="fab fa-instagram"></i>
               </a>
-              <a href="#" class="text-2xl hover:text-red-400 transition">
+              <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors">
                 <i class="fab fa-youtube"></i>
               </a>
-              <a href="#" class="text-2xl hover:text-blue-300 transition">
-                <i class="fab fa-twitter"></i>
+              <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors">
+                <i class="fab fa-vimeo"></i>
               </a>
             </div>
           </div>
-          <div class="fade-in-up">
-            <form class="glass-effect p-8 rounded-2xl space-y-6" id="contact-form">
-              <input
-                type="text"
-                placeholder="Your Name"
-                class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-blue-400 focus:outline-none transition"
-                required
-              />
+          
+          <div class="fade-in">
+            <form class="glass rounded-2xl p-8 space-y-6" id="contact-form">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-orange-500 focus:outline-none transition-colors"
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-orange-500 focus:outline-none transition-colors"
+                  required
+                />
+              </div>
               <input
                 type="email"
-                placeholder="Your Email"
-                class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-blue-400 focus:outline-none transition"
+                placeholder="Email Address"
+                class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-orange-500 focus:outline-none transition-colors"
                 required
               />
-              <select class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-blue-400 focus:outline-none transition">
-                <option>Project Type</option>
-                <option>Brand Film</option>
-                <option>Real Estate</option>
-                <option>Event Coverage</option>
-                <option>Social Media Content</option>
-                <option>Other</option>
+              <select class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-orange-500 focus:outline-none transition-colors">
+                <option value="">Select Service Type</option>
+                <option value="aerial-cinematography">Aerial Cinematography</option>
+                <option value="real-estate">Real Estate Media</option>
+                <option value="event-coverage">Event Coverage</option>
+                <option value="commercial">Commercial Project</option>
+                <option value="social-media">Social Media Content</option>
+                <option value="other">Other</option>
               </select>
               <textarea
                 placeholder="Tell me about your project..."
-                class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-blue-400 focus:outline-none transition"
+                class="w-full px-4 py-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-orange-500 focus:outline-none transition-colors"
                 rows="5"
                 required
               ></textarea>
-              <button
-                type="submit"
-                class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
-              >
-                <i class="fas fa-paper-plane mr-2"></i>Send Message
+              <button type="submit" class="btn-primary w-full justify-center">
+                <i class="fas fa-paper-plane"></i>
+                Send Message
               </button>
             </form>
           </div>
@@ -429,83 +738,22 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black py-8 text-center">
-      <div class="max-w-4xl mx-auto px-6">
-        <div class="gradient-text text-xl font-bold mb-4">Sampath Drone Films</div>
-        <p class="text-gray-400 mb-4">Marketing in Motion — Creating visuals that perform</p>
-        <div class="flex justify-center space-x-6 mb-4">
-          <a href="#" class="hover:text-blue-400 transition">Privacy Policy</a>
-          <a href="#" class="hover:text-blue-400 transition">Terms of Service</a>
-          <a href="#" class="hover:text-blue-400 transition">Sitemap</a>
+    <footer class="bg-gray-900 py-12 text-center border-t border-gray-800">
+      <div class="container mx-auto px-6">
+        <div class="text-2xl font-display font-bold mb-4">
+          <span class="text-white">Sampath</span>
+          <span class="text-orange-500">Films</span>
         </div>
-        <p class="text-sm text-gray-500">© 2025 Sampath Drone Films. All rights reserved.</p>
+        <p class="text-gray-400 mb-6">Professional Drone Cinematography & Marketing</p>
+        <div class="flex justify-center gap-6 mb-6 text-sm">
+          <a href="#" class="hover:text-orange-500 transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-orange-500 transition-colors">Terms of Service</a>
+          <a href="#" class="hover:text-orange-500 transition-colors">FAA Compliance</a>
+        </div>
+        <p class="text-sm text-gray-500">© 2025 Sampath Films. All rights reserved.</p>
       </div>
     </footer>
 
-    <script>
-      // Smooth scrolling and animations
-      document.addEventListener('DOMContentLoaded', function() {
-        // Fade in animation on scroll
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-            }
-          });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in-up').forEach(el => {
-          observer.observe(el);
-        });
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', function() {
-          const navbar = document.getElementById('navbar');
-          if (window.scrollY > 100) {
-            navbar.style.background = 'rgba(0, 0, 0, 0.95)';
-          } else {
-            navbar.style.background = 'rgba(0, 0, 0, 0.8)';
-          }
-        });
-
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        mobileMenuBtn.addEventListener('click', function() {
-          // Add mobile menu functionality here
-          console.log('Mobile menu clicked');
-        });
-
-        // Contact form submission
-        const contactForm = document.getElementById('contact-form');
-        contactForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          // Add form submission logic here
-          alert('Thank you for your message! I\'ll get back to you soon.');
-        });
-
-        // Video error handling
-        const heroVideo = document.getElementById('hero-video');
-        heroVideo.addEventListener('error', function() {
-          console.log('Video failed to load, using fallback');
-          // You can add a fallback image here
-        });
-      });
-
-      // Parallax effect for background videos
-      window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const parallaxElements = document.querySelectorAll('.section-bg-video');
-        
-        parallaxElements.forEach(element => {
-          const speed = 0.5;
-          element.style.transform = `translateY(${scrolled * speed}px)`;
-        });
-      });
-    </script>
+    <script src="js/animations.js"></script>
   </body>
 </html>

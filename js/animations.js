@@ -1,231 +1,337 @@
-// Advanced animations and interactive features
+// Professional Portfolio Animations and Interactions
 
-class PortfolioAnimations {
+class PortfolioManager {
   constructor() {
     this.init();
   }
 
   init() {
-    this.setupParticles();
-    this.setupVideoLazyLoading();
-    this.setupAdvancedScrollEffects();
-    this.setupTypewriterEffect();
-    this.setupVideoPlayOverlays();
+    this.setupScrollAnimations();
+    this.setupVideoInteractions();
+    this.setupNavigation();
+    this.setupFormHandling();
+    this.setupPerformanceOptimizations();
   }
 
-  // Create floating particles background
-  setupParticles() {
-    const particlesContainer = document.createElement('div');
-    particlesContainer.className = 'particles fixed inset-0 pointer-events-none';
-    document.body.appendChild(particlesContainer);
+  // Scroll-triggered animations
+  setupScrollAnimations() {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
 
-    for (let i = 0; i < 50; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.style.left = Math.random() * 100 + '%';
-      particle.style.width = Math.random() * 4 + 2 + 'px';
-      particle.style.height = particle.style.width;
-      particle.style.animationDelay = Math.random() * 20 + 's';
-      particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-      particlesContainer.appendChild(particle);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all animated elements
+    document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+      observer.observe(el);
+    });
+  }
+
+  // Video interactions and optimizations
+  setupVideoInteractions() {
+    const portfolioVideos = document.querySelectorAll('.portfolio-video');
+    
+    portfolioVideos.forEach(video => {
+      const container = video.closest('.portfolio-item');
+      
+      // Play video on hover
+      container.addEventListener('mouseenter', () => {
+        video.play().catch(e => console.log('Video play failed:', e));
+      });
+      
+      // Pause video when not hovering
+      container.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+      });
+      
+      // Handle video loading errors
+      video.addEventListener('error', () => {
+        this.handleVideoError(video);
+      });
+      
+      // Lazy load videos
+      this.setupVideoLazyLoading(video);
+    });
+
+    // Hero video handling
+    const heroVideo = document.querySelector('.hero-video');
+    if (heroVideo) {
+      heroVideo.addEventListener('error', () => {
+        this.handleVideoError(heroVideo);
+      });
     }
   }
 
-  // Lazy load videos for better performance
-  setupVideoLazyLoading() {
-    const videos = document.querySelectorAll('video[data-src]');
-    const videoObserver = new IntersectionObserver((entries) => {
+  // Lazy loading for videos
+  setupVideoLazyLoading(video) {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const video = entry.target;
-          video.src = video.dataset.src;
-          video.load();
-          videoObserver.unobserve(video);
-        }
-      });
-    });
-
-    videos.forEach(video => videoObserver.observe(video));
-  }
-
-  // Advanced scroll-triggered animations
-  setupAdvancedScrollEffects() {
-    const scrollElements = document.querySelectorAll('[data-scroll]');
-    
-    const scrollObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const element = entry.target;
-          const animationType = element.dataset.scroll;
+          const sources = video.querySelectorAll('source');
           
-          switch(animationType) {
-            case 'slide-left':
-              element.style.transform = 'translateX(0)';
-              element.style.opacity = '1';
-              break;
-            case 'slide-right':
-              element.style.transform = 'translateX(0)';
-              element.style.opacity = '1';
-              break;
-            case 'zoom-in':
-              element.style.transform = 'scale(1)';
-              element.style.opacity = '1';
-              break;
-            case 'rotate-in':
-              element.style.transform = 'rotate(0deg) scale(1)';
-              element.style.opacity = '1';
-              break;
-          }
+          sources.forEach(source => {
+            if (source.dataset.src) {
+              source.src = source.dataset.src;
+            }
+          });
+          
+          video.load();
+          observer.unobserve(video);
         }
       });
-    }, { threshold: 0.1 });
-
-    scrollElements.forEach(el => scrollObserver.observe(el));
-  }
-
-  // Typewriter effect for hero text
-  setupTypewriterEffect() {
-    const typewriterElements = document.querySelectorAll('.typewriter');
-    
-    typewriterElements.forEach(element => {
-      const text = element.textContent;
-      element.textContent = '';
-      element.style.borderRight = '2px solid #3b82f6';
-      
-      let i = 0;
-      const typeInterval = setInterval(() => {
-        element.textContent += text.charAt(i);
-        i++;
-        
-        if (i >= text.length) {
-          clearInterval(typeInterval);
-          // Remove cursor after typing is complete
-          setTimeout(() => {
-            element.style.borderRight = 'none';
-          }, 1000);
-        }
-      }, 100);
     });
+
+    observer.observe(video);
   }
 
-  // Video play overlays
-  setupVideoPlayOverlays() {
-    const videoContainers = document.querySelectorAll('.video-container');
+  // Handle video loading errors
+  handleVideoError(video) {
+    const container = video.parentElement;
+    const poster = video.getAttribute('poster');
     
-    videoContainers.forEach(container => {
-      const iframe = container.querySelector('iframe');
-      if (iframe) {
-        const overlay = document.createElement('div');
-        overlay.className = 'video-play-overlay';
-        overlay.innerHTML = '<i class="fas fa-play text-white text-2xl"></i>';
-        
-        overlay.addEventListener('click', () => {
-          // Add autoplay parameter to iframe src
-          const src = iframe.src;
-          if (src.includes('youtube.com')) {
-            iframe.src = src + (src.includes('?') ? '&' : '?') + 'autoplay=1';
-          }
-          overlay.style.display = 'none';
-        });
-        
-        container.appendChild(overlay);
+    if (poster) {
+      // Replace video with poster image
+      const img = document.createElement('img');
+      img.src = poster;
+      img.className = video.className;
+      img.style.objectFit = 'cover';
+      img.alt = 'Video thumbnail';
+      
+      container.replaceChild(img, video);
+    }
+  }
+
+  // Navigation functionality
+  setupNavigation() {
+    const navbar = document.getElementById('navbar');
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        navbar.style.background = 'rgba(26, 26, 26, 0.98)';
+      } else {
+        navbar.style.background = 'rgba(26, 26, 26, 0.95)';
       }
     });
-  }
-}
 
-// Smooth scroll with easing
-class SmoothScroll {
-  constructor() {
-    this.setupSmoothScroll();
-  }
-
-  setupSmoothScroll() {
+    // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', (e) => {
         e.preventDefault();
         const target = document.querySelector(anchor.getAttribute('href'));
         
         if (target) {
-          const targetPosition = target.offsetTop - 80; // Account for fixed navbar
-          const startPosition = window.pageYOffset;
-          const distance = targetPosition - startPosition;
-          const duration = 1000;
-          let start = null;
-
-          const step = (timestamp) => {
-            if (!start) start = timestamp;
-            const progress = timestamp - start;
-            const ease = this.easeInOutCubic(progress / duration);
-            
-            window.scrollTo(0, startPosition + distance * ease);
-            
-            if (progress < duration) {
-              window.requestAnimationFrame(step);
-            }
-          };
-
-          window.requestAnimationFrame(step);
+          const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+          
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
         }
       });
     });
+
+    // Mobile menu toggle (basic implementation)
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        // Add mobile menu functionality here
+        console.log('Mobile menu clicked');
+      });
+    }
   }
 
-  easeInOutCubic(t) {
-    return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+  // Contact form handling
+  setupFormHandling() {
+    const contactForm = document.getElementById('contact-form');
+    
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        this.handleFormSubmission(contactForm);
+      });
+    }
   }
-}
 
-// Performance monitoring
-class PerformanceMonitor {
-  constructor() {
+  handleFormSubmission(form) {
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    
+    // Show loading state
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    submitBtn.disabled = true;
+    
+    // Simulate form submission (replace with actual form handling)
+    setTimeout(() => {
+      // Reset button
+      submitBtn.innerHTML = originalText;
+      submitBtn.disabled = false;
+      
+      // Show success message
+      this.showNotification('Thank you! Your message has been sent successfully.', 'success');
+      
+      // Reset form
+      form.reset();
+    }, 2000);
+  }
+
+  // Show notification messages
+  showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg transition-all duration-300 transform translate-x-full`;
+    
+    // Set notification style based on type
+    switch(type) {
+      case 'success':
+        notification.classList.add('bg-green-600', 'text-white');
+        break;
+      case 'error':
+        notification.classList.add('bg-red-600', 'text-white');
+        break;
+      default:
+        notification.classList.add('bg-blue-600', 'text-white');
+    }
+    
+    notification.innerHTML = `
+      <div class="flex items-center gap-3">
+        <i class="fas fa-${type === 'success' ? 'check' : type === 'error' ? 'exclamation' : 'info'}-circle"></i>
+        <span>${message}</span>
+        <button class="ml-2 hover:opacity-70" onclick="this.parentElement.parentElement.remove()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+      notification.classList.remove('translate-x-full');
+    }, 100);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+      notification.classList.add('translate-x-full');
+      setTimeout(() => {
+        if (notification.parentElement) {
+          notification.remove();
+        }
+      }, 300);
+    }, 5000);
+  }
+
+  // Performance optimizations
+  setupPerformanceOptimizations() {
+    // Preload critical images
+    this.preloadCriticalImages();
+    
+    // Optimize scroll performance
+    this.optimizeScrollPerformance();
+    
+    // Monitor performance
     this.monitorPerformance();
   }
 
+  preloadCriticalImages() {
+    const criticalImages = [
+      'https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop'
+    ];
+    
+    criticalImages.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  }
+
+  optimizeScrollPerformance() {
+    let ticking = false;
+    
+    const updateScrollEffects = () => {
+      // Add any scroll-based effects here
+      ticking = false;
+    };
+    
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateScrollEffects);
+        ticking = true;
+      }
+    });
+  }
+
   monitorPerformance() {
-    // Monitor video loading
+    // Monitor video loading performance
     const videos = document.querySelectorAll('video');
+    
     videos.forEach(video => {
       video.addEventListener('loadstart', () => {
         console.log('Video loading started');
       });
       
       video.addEventListener('canplaythrough', () => {
-        console.log('Video can play through');
+        console.log('Video ready to play');
       });
       
       video.addEventListener('error', (e) => {
-        console.error('Video error:', e);
-        this.handleVideoError(video);
+        console.error('Video loading error:', e);
       });
     });
   }
+}
 
-  handleVideoError(video) {
-    // Fallback to image if video fails
-    const fallbackImage = document.createElement('img');
-    fallbackImage.src = 'https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop';
-    fallbackImage.className = video.className;
-    fallbackImage.style.objectFit = 'cover';
-    
-    video.parentNode.replaceChild(fallbackImage, video);
+// Utility functions
+class Utils {
+  static debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+
+  static throttle(func, limit) {
+    let inThrottle;
+    return function() {
+      const args = arguments;
+      const context = this;
+      if (!inThrottle) {
+        func.apply(context, args);
+        inThrottle = true;
+        setTimeout(() => inThrottle = false, limit);
+      }
+    };
   }
 }
 
-// Initialize all animations when DOM is loaded
+// Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-  new PortfolioAnimations();
-  new SmoothScroll();
-  new PerformanceMonitor();
+  new PortfolioManager();
 });
 
-// Preloader
+// Handle page load
 window.addEventListener('load', () => {
-  const preloader = document.getElementById('preloader');
-  if (preloader) {
-    preloader.style.opacity = '0';
-    setTimeout(() => {
-      preloader.style.display = 'none';
-    }, 500);
-  }
+  // Remove any loading states
+  document.body.classList.add('loaded');
+  
+  // Trigger initial animations
+  setTimeout(() => {
+    document.querySelectorAll('.fade-in').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight) {
+        el.classList.add('visible');
+      }
+    });
+  }, 100);
 });
