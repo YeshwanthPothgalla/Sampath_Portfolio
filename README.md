@@ -4,9 +4,8 @@ A dynamic, interactive drone portfolio showcasing Sampath's aerial cinematograph
 
 ## Live Site
 
-[https://sampathkumar-dev.github.io/sampath-portfolio/
-](https://yeshwanthpothagalla.github.io/Sampath_Portfolio/
-)
+https://yeshwanthpothagalla.github.io/Sampath_Portfolio/
+
 ## Features
 
 - **Dynamic Video Backgrounds**: Multiple video layers with parallax effects
