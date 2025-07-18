@@ -4,7 +4,7 @@ A dynamic, interactive drone portfolio showcasing Sampath's aerial cinematograph
 
 ## Live Site
 
-https://yourusername.github.io/sampath-portfolio/
+https://sampathkumar-dev.github.io/sampath-portfolio/
 
 ## Features
 
