@@ -31,11 +31,21 @@
     />
     <style>
       :root {
-        --primary-color: #1a1a1a;
-        --accent-color: #ff6b35;
-        --text-light: #f8f9fa;
-        --text-dark: #2d3748;
-        --glass-bg: rgba(255, 255, 255, 0.1);
+        /* Modern Aesthetic Color Palette */
+        --primary-color: #0f0f23;
+        --secondary-color: #1a1a2e;
+        --tertiary-color: #16213e;
+        --accent-color: #00d4ff;
+        --accent-secondary: #ff6b9d;
+        --accent-tertiary: #c471ed;
+        --text-light: #ffffff;
+        --text-muted: #b8bcc8;
+        --text-dark: #64748b;
+        --glass-bg: rgba(0, 212, 255, 0.08);
+        --gradient-primary: linear-gradient(135deg, #00d4ff 0%, #ff6b9d 50%, #c471ed 100%);
+        --gradient-secondary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        --shadow-glow: 0 0 40px rgba(0, 212, 255, 0.3);
       }
 
       body {
@@ -56,9 +66,10 @@
 
       /* Navigation Styles */
       .nav-glass {
-        background: rgba(26, 26, 26, 0.95);
-        backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(15, 15, 35, 0.95);
+        backdrop-filter: blur(25px);
+        border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       }
 
       /* Hero Video Styles */
@@ -86,11 +97,11 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(
-          135deg,
-          rgba(0, 0, 0, 0.4) 0%,
-          rgba(0, 0, 0, 0.6) 100%
-        );
+        background: linear-gradient(135deg, 
+          rgba(15, 15, 35, 0.4) 0%, 
+          rgba(26, 26, 46, 0.3) 30%,
+          rgba(0, 212, 255, 0.1) 70%,
+          rgba(255, 107, 157, 0.1) 100%);
         z-index: 2;
       }
 
@@ -134,11 +145,10 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(
-          to top,
-          rgba(0, 0, 0, 0.8) 0%,
-          transparent 50%
-        );
+        background: linear-gradient(to top, 
+          rgba(15, 15, 35, 0.95) 0%, 
+          rgba(0, 212, 255, 0.2) 40%,
+          transparent 80%);
         opacity: 0;
         transition: opacity 0.3s ease;
         display: flex;
@@ -152,9 +162,10 @@
 
       /* Glass Effect */
       .glass {
-        background: var(--glass-bg);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(0, 212, 255, 0.08);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
       }
 
       /* Animations */
@@ -193,7 +204,7 @@
 
       /* Button Styles */
       .btn-primary {
-        background: linear-gradient(135deg, var(--accent-color), #ff8f65);
+        background: var(--gradient-primary);
         color: white;
         padding: 1rem 2rem;
         border-radius: 50px;
@@ -208,8 +219,8 @@
       }
 
       .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-glow);
       }
 
       .btn-secondary {
@@ -222,28 +233,31 @@
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        border: 2px solid rgba(255, 255, 255, 0.3);
+        border: 2px solid rgba(0, 212, 255, 0.4);
         transition: all 0.3s ease;
       }
 
       .btn-secondary:hover {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: rgba(255, 255, 255, 0.5);
+        background: rgba(0, 212, 255, 0.15);
+        border-color: rgba(0, 212, 255, 0.6);
+        box-shadow: 0 8px 25px rgba(0, 212, 255, 0.2);
       }
 
       /* Service Cards */
       .service-card {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(0, 212, 255, 0.05);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 212, 255, 0.15);
         border-radius: 16px;
         padding: 2rem;
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       .service-card:hover {
-        background: rgba(255, 255, 255, 0.1);
-        transform: translateY(-5px);
+        background: rgba(0, 212, 255, 0.12);
+        border-color: rgba(0, 212, 255, 0.3);
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 25px 50px rgba(0, 212, 255, 0.2);
       }
 
       /* Responsive Design */
@@ -273,12 +287,12 @@
       }
 
       ::-webkit-scrollbar-thumb {
-        background: var(--accent-color);
+        background: linear-gradient(45deg, var(--accent-color), var(--accent-secondary));
         border-radius: 4px;
       }
 
       ::-webkit-scrollbar-thumb:hover {
-        background: #ff8f65;
+        background: linear-gradient(45deg, var(--accent-secondary), var(--accent-tertiary));
       }
 
       /* Loading States */
@@ -294,7 +308,7 @@
         width: 40px;
         height: 40px;
         margin: -20px 0 0 -20px;
-        border: 3px solid rgba(255, 255, 255, 0.3);
+        border: 3px solid rgba(0, 212, 255, 0.3);
         border-top: 3px solid var(--accent-color);
         border-radius: 50%;
         animation: spin 1s linear infinite;
@@ -303,6 +317,28 @@
       @keyframes spin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
+      }
+
+      /* Enhanced Gradient Text */
+      .gradient-text {
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Glowing Effects */
+      .glow-on-hover:hover {
+        box-shadow: var(--shadow-glow);
+      }
+
+      /* Section Backgrounds */
+      .section-bg-primary {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      }
+
+      .section-bg-secondary {
+        background: linear-gradient(135deg, var(--secondary-color) 0%, var(--tertiary-color) 100%);
       }
     </style>
   </head>
@@ -313,14 +349,14 @@
         <div class="flex justify-between items-center">
           <div class="text-2xl font-display font-bold">
             <span class="text-white">Sampath</span>
-            <span class="text-orange-500">Films</span>
+            <span class="gradient-text">Films</span>
           </div>
           <div class="hidden md:flex space-x-8">
-            <a href="#home" class="hover:text-orange-500 transition-colors">Home</a>
-            <a href="#portfolio" class="hover:text-orange-500 transition-colors">Portfolio</a>
-            <a href="#about" class="hover:text-orange-500 transition-colors">About</a>
-            <a href="#services" class="hover:text-orange-500 transition-colors">Services</a>
-            <a href="#contact" class="hover:text-orange-500 transition-colors">Contact</a>
+            <a href="#home" class="hover:text-cyan-400 transition-colors">Home</a>
+            <a href="#portfolio" class="hover:text-cyan-400 transition-colors">Portfolio</a>
+            <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
+            <a href="#services" class="hover:text-cyan-400 transition-colors">Services</a>
+            <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
           </div>
           <button class="md:hidden text-white" id="mobile-menu-btn">
             <i class="fas fa-bars text-xl"></i>
@@ -331,16 +367,23 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero-video-container">
+      <!-- 
+        REPLACE THIS VIDEO WITH YOUR OWN:
+        1. Upload your hero/main background video to the 'videos' folder
+        2. Name it 'hero-background.mp4' or update the src below
+        3. Update the poster image URL with a screenshot from your video
+        4. Recommended: 1920x1080 resolution, under 50MB for web performance
+      -->
       <video
         autoplay
         muted
         loop
         playsinline
         class="hero-video"
-        poster="https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+        poster="https://images.pexels.com/photos/2166711/pexels-photo-2166711.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
         preload="metadata"
       >
-        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+        <source src="videos/hero-background.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div class="hero-overlay"></div>
@@ -348,7 +391,7 @@
         <div class="max-w-4xl mx-auto">
           <h1 class="text-5xl md:text-7xl font-display font-bold mb-6 fade-in">
             Professional Drone
-            <span class="text-orange-500">Cinematography</span>
+            <span class="gradient-text">Cinematography</span>
           </h1>
           <p class="text-xl md:text-2xl mb-8 fade-in font-light max-w-2xl mx-auto">
             Creating stunning aerial visuals that tell your story from a perspective that captivates and inspires.
@@ -373,11 +416,11 @@
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="py-20 px-6 bg-gray-900">
+    <section id="portfolio" class="py-20 px-6 section-bg-primary">
       <div class="container mx-auto">
         <div class="text-center mb-16">
           <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 fade-in">
-            Featured <span class="text-orange-500">Work</span>
+            Featured <span class="gradient-text">Work</span>
           </h2>
           <p class="text-xl text-gray-300 max-w-2xl mx-auto fade-in">
             Explore a collection of aerial cinematography projects showcasing diverse industries and creative visions.
@@ -385,16 +428,20 @@
         </div>
         
         <div class="portfolio-grid">
-          <!-- Corporate Video -->
+          <!-- 
+            PORTFOLIO VIDEO 1 - CORPORATE SHOWCASE:
+            Replace 'corporate-showcase.mp4' with your own corporate/business video
+            Update the poster image with a thumbnail from your video
+          -->
           <div class="portfolio-item fade-in">
             <video
               class="portfolio-video"
               muted
               loop
               preload="none"
-              poster="https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=800&h=450&fit=crop"
+              poster="https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg?auto=compress&cs=tinysrgb&w=800&h=450&fit=crop"
             >
-              <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4" />
+              <source src="videos/corporate-showcase.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
             <div class="portfolio-overlay">
@@ -405,16 +452,20 @@
             </div>
           </div>
 
-          <!-- Real Estate -->
+          <!-- 
+            PORTFOLIO VIDEO 2 - REAL ESTATE:
+            Replace 'real-estate-showcase.mp4' with your own real estate video
+            Update the poster image with a thumbnail from your video
+          -->
           <div class="portfolio-item fade-in">
             <video
               class="portfolio-video"
               muted
               loop
               preload="none"
-              poster="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800&h=450&fit=crop"
+              poster="https://images.pexels.com/photos/1546168/pexels-photo-1546168.jpeg?auto=compress&cs=tinysrgb&w=800&h=450&fit=crop"
             >
-              <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" />
+              <source src="videos/real-estate-showcase.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
             <div class="portfolio-overlay">
@@ -425,16 +476,20 @@
             </div>
           </div>
 
-          <!-- Event Coverage -->
+          <!-- 
+            PORTFOLIO VIDEO 3 - EVENT COVERAGE:
+            Replace 'event-coverage.mp4' with your own event video
+            Update the poster image with a thumbnail from your video
+          -->
           <div class="portfolio-item fade-in">
             <video
               class="portfolio-video"
               muted
               loop
               preload="none"
-              poster="https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=800&h=450&fit=crop"
+              poster="https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=800&h=450&fit=crop"
             >
-              <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4" />
+              <source src="videos/event-coverage.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
             <div class="portfolio-overlay">
@@ -445,16 +500,20 @@
             </div>
           </div>
 
-          <!-- Landscape/Travel -->
+          <!-- 
+            PORTFOLIO VIDEO 4 - CINEMATIC LANDSCAPES:
+            Replace 'cinematic-landscapes.mp4' with your own landscape/travel video
+            Update the poster image with a thumbnail from your video
+          -->
           <div class="portfolio-item fade-in">
             <video
               class="portfolio-video"
               muted
               loop
               preload="none"
-              poster="https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=800&h=450&fit=crop"
+              poster="https://images.pexels.com/photos/1666021/pexels-photo-1666021.jpeg?auto=compress&cs=tinysrgb&w=800&h=450&fit=crop"
             >
-              <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" type="video/mp4" />
+              <source src="videos/cinematic-landscapes.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
             <div class="portfolio-overlay">
@@ -476,12 +535,12 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 px-6 bg-black">
+    <section id="about" class="py-20 px-6 section-bg-secondary">
       <div class="container mx-auto max-w-6xl">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div class="slide-in-left">
             <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">
-              About <span class="text-orange-500">Sampath</span>
+              About <span class="gradient-text">Sampath</span>
             </h2>
             <p class="text-lg text-gray-300 mb-6 leading-relaxed">
               With an MBA in Digital Marketing and years of experience in aerial cinematography, 
@@ -493,11 +552,11 @@
             </p>
             <div class="grid grid-cols-2 gap-6 mb-8">
               <div>
-                <div class="text-3xl font-bold text-orange-500 mb-2">50+</div>
+                <div class="text-3xl font-bold gradient-text mb-2">50+</div>
                 <p class="text-gray-400">Projects Completed</p>
               </div>
               <div>
-                <div class="text-3xl font-bold text-orange-500 mb-2">5+</div>
+                <div class="text-3xl font-bold gradient-text mb-2">5+</div>
                 <p class="text-gray-400">Years Experience</p>
               </div>
             </div>
@@ -515,19 +574,19 @@
               />
               <div class="space-y-4">
                 <div class="flex items-center gap-3">
-                  <i class="fas fa-certificate text-orange-500"></i>
+                  <i class="fas fa-certificate text-cyan-400"></i>
                   <span>FAA Part 107 Certified</span>
                 </div>
                 <div class="flex items-center gap-3">
-                  <i class="fas fa-graduation-cap text-orange-500"></i>
+                  <i class="fas fa-graduation-cap text-cyan-400"></i>
                   <span>MBA in Digital Marketing</span>
                 </div>
                 <div class="flex items-center gap-3">
-                  <i class="fas fa-award text-orange-500"></i>
+                  <i class="fas fa-award text-cyan-400"></i>
                   <span>Award-Winning Cinematographer</span>
                 </div>
                 <div class="flex items-center gap-3">
-                  <i class="fas fa-shield-alt text-orange-500"></i>
+                  <i class="fas fa-shield-alt text-cyan-400"></i>
                   <span>Fully Insured Operations</span>
                 </div>
               </div>
@@ -538,11 +597,11 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-20 px-6 bg-gray-900">
+    <section id="services" class="py-20 px-6 section-bg-primary">
       <div class="container mx-auto max-w-6xl">
         <div class="text-center mb-16">
           <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 fade-in">
-            Professional <span class="text-orange-500">Services</span>
+            Professional <span class="gradient-text">Services</span>
           </h2>
           <p class="text-xl text-gray-300 max-w-2xl mx-auto fade-in">
             Comprehensive aerial cinematography solutions tailored to your specific needs and vision.
@@ -550,8 +609,8 @@
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="service-card fade-in">
-            <div class="text-4xl text-orange-500 mb-4">
+          <div class="service-card fade-in glow-on-hover">
+            <div class="text-4xl text-cyan-400 mb-4">
               <i class="fas fa-video"></i>
             </div>
             <h3 class="text-xl font-semibold mb-3">Aerial Cinematography</h3>
@@ -565,8 +624,8 @@
             </ul>
           </div>
 
-          <div class="service-card fade-in">
-            <div class="text-4xl text-orange-500 mb-4">
+          <div class="service-card fade-in glow-on-hover">
+            <div class="text-4xl text-pink-400 mb-4">
               <i class="fas fa-home"></i>
             </div>
             <h3 class="text-xl font-semibold mb-3">Real Estate Media</h3>
@@ -580,8 +639,8 @@
             </ul>
           </div>
 
-          <div class="service-card fade-in">
-            <div class="text-4xl text-orange-500 mb-4">
+          <div class="service-card fade-in glow-on-hover">
+            <div class="text-4xl text-purple-400 mb-4">
               <i class="fas fa-calendar-alt"></i>
             </div>
             <h3 class="text-xl font-semibold mb-3">Event Coverage</h3>
@@ -595,8 +654,8 @@
             </ul>
           </div>
 
-          <div class="service-card fade-in">
-            <div class="text-4xl text-orange-500 mb-4">
+          <div class="service-card fade-in glow-on-hover">
+            <div class="text-4xl text-cyan-400 mb-4">
               <i class="fas fa-building"></i>
             </div>
             <h3 class="text-xl font-semibold mb-3">Commercial Projects</h3>
@@ -610,8 +669,8 @@
             </ul>
           </div>
 
-          <div class="service-card fade-in">
-            <div class="text-4xl text-orange-500 mb-4">
+          <div class="service-card fade-in glow-on-hover">
+            <div class="text-4xl text-pink-400 mb-4">
               <i class="fas fa-mobile-alt"></i>
             </div>
             <h3 class="text-xl font-semibold mb-3">Social Media Content</h3>
@@ -625,8 +684,8 @@
             </ul>
           </div>
 
-          <div class="service-card fade-in">
-            <div class="text-4xl text-orange-500 mb-4">
+          <div class="service-card fade-in glow-on-hover">
+            <div class="text-4xl text-purple-400 mb-4">
               <i class="fas fa-chart-line"></i>
             </div>
             <h3 class="text-xl font-semibold mb-3">Marketing Strategy</h3>
@@ -644,11 +703,11 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 px-6 bg-black">
+    <section id="contact" class="py-20 px-6 section-bg-secondary">
       <div class="container mx-auto max-w-4xl">
         <div class="text-center mb-16">
           <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 fade-in">
-            Let's Create Something <span class="text-orange-500">Amazing</span>
+            Let's Create Something <span class="gradient-text">Amazing</span>
           </h2>
           <p class="text-xl text-gray-300 fade-in">
             Ready to elevate your project with professional aerial cinematography?
@@ -660,7 +719,7 @@
             <h3 class="text-2xl font-semibold mb-6">Get In Touch</h3>
             <div class="space-y-6 mb-8">
               <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
+                <div class="w-12 h-12 bg-gradient-to-r from-cyan-400 to-pink-400 rounded-full flex items-center justify-center">
                   <i class="fas fa-envelope text-white"></i>
                 </div>
                 <div>
@@ -669,7 +728,7 @@
                 </div>
               </div>
               <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
+                <div class="w-12 h-12 bg-gradient-to-r from-cyan-400 to-pink-400 rounded-full flex items-center justify-center">
                   <i class="fas fa-phone text-white"></i>
                 </div>
                 <div>
@@ -678,7 +737,7 @@
                 </div>
               </div>
               <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
+                <div class="w-12 h-12 bg-gradient-to-r from-cyan-400 to-pink-400 rounded-full flex items-center justify-center">
                   <i class="fas fa-map-marker-alt text-white"></i>
                 </div>
                 <div>
@@ -688,16 +747,16 @@
               </div>
             </div>
             <div class="flex gap-4">
-              <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors">
+              <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-cyan-400 transition-colors glow-on-hover">
                 <i class="fab fa-instagram"></i>
               </a>
-              <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors">
+              <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-400 transition-colors glow-on-hover">
                 <i class="fab fa-youtube"></i>
               </a>
-              <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors">
+              <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-400 transition-colors glow-on-hover">
                 <i class="fab fa-linkedin"></i>
               </a>
-              <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors">
+              <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-cyan-400 transition-colors glow-on-hover">
                 <i class="fab fa-vimeo"></i>
               </a>
             </div>
@@ -751,17 +810,17 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 py-12 text-center border-t border-gray-800">
+    <footer class="section-bg-primary py-12 text-center border-t border-gray-800">
       <div class="container mx-auto px-6">
         <div class="text-2xl font-display font-bold mb-4">
           <span class="text-white">Sampath</span>
-          <span class="text-orange-500">Films</span>
+          <span class="gradient-text">Films</span>
         </div>
         <p class="text-gray-400 mb-6">Professional Drone Cinematography & Marketing</p>
         <div class="flex justify-center gap-6 mb-6 text-sm">
-          <a href="#" class="hover:text-orange-500 transition-colors">Privacy Policy</a>
-          <a href="#" class="hover:text-orange-500 transition-colors">Terms of Service</a>
-          <a href="#" class="hover:text-orange-500 transition-colors">FAA Compliance</a>
+          <a href="#" class="hover:text-cyan-400 transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-cyan-400 transition-colors">Terms of Service</a>
+          <a href="#" class="hover:text-cyan-400 transition-colors">FAA Compliance</a>
         </div>
         <p class="text-sm text-gray-500">© 2025 Sampath Films. All rights reserved.</p>
       </div>
